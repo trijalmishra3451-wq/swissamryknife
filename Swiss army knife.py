@@ -5,7 +5,7 @@ canRun = True
 humanTurn = True
 
 def ask():
-    #Rock: 1, Paper:2, Sissors:3
+    #Rock: 1, Paper:2, Sissors:3 it is fun to do it
     game = input("What game do you want to play: tic, tack, toe or RPS(rock, paper, sissors)")
     Game = game.lower()
     if Game == "rps":

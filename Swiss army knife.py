@@ -5,7 +5,6 @@ canRun = True
 humanTurn = True
 
 def ask():
-    #Rock: 1, Paper:2, Sissors:3 it is fun to do it
     game = input("What game do you want to play: tic, tack, toe or RPS(rock, paper, sissors)")
     Game = game.lower()
     if Game == "rps":
@@ -143,6 +142,12 @@ def ttt():
     elif player_2_win == True:
         print("Player 2 wins!")
 def rpsR():
+    """
+    RPS primarly uses encoders and decoders to convert the human 
+    input into a number, and then checks the winning conditions 
+    based on those numbers. This also decodes to make the round 
+    reports readable.
+    """
     mode = input("Automatic or Manual rock, paper sissors: ")
     amount = int(input("How many tries: "))
     lmode = mode.lower()

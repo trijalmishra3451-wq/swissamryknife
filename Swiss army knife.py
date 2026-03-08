@@ -1,3 +1,4 @@
+# Version 3.0.8
 import time
 import random
 cheatCodeActive = True

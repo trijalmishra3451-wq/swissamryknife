@@ -1,4 +1,3 @@
-#Version 3.0.7
 import time
 import random
 cheatCodeActive = True
@@ -6,6 +5,7 @@ canRun = True
 humanTurn = True
 
 def ask():
+    #Rock: 1, Paper:2, Sissors:3
     game = input("What game do you want to play: tic, tack, toe or RPS(rock, paper, sissors)")
     Game = game.lower()
     if Game == "rps":
@@ -52,65 +52,46 @@ def ttt():
         else:
             player_token = "X"
         print("\n")
-        pick = input("Where do you want to place your token? ")
-        pick_conver = pick.lower()
-        #Row 3
-        if pick_conver == "1" and row3[1] == "1":
-            row3[1] = player_token
-            #Updated board
-            print(row3[0],row3[1],row3[2],row3[3],row3[4],row3[5],row3[6])
-            print(row2[0],row2[1],row2[2],row2[3],row2[4],row2[5],row2[6])
-            print(row1[0],row1[1],row1[2],row1[3],row1[4],row1[5],row1[6])
-        elif pick_conver == "2" and row3[3] == "2":
-            row3[3] = player_token
-            #Updated board
-            print(row3[0],row3[1],row3[2],row3[3],row3[4],row3[5],row3[6])
-            print(row2[0],row2[1],row2[2],row2[3],row2[4],row2[5],row2[6])
-            print(row1[0],row1[1],row1[2],row1[3],row1[4],row1[5],row1[6])
-        elif pick_conver == "3" and row3[5] == "3":
-            row3[5] = player_token
-            #Updated board
-            print(row3[0],row3[1],row3[2],row3[3],row3[4],row3[5],row3[6])
-            print(row2[0],row2[1],row2[2],row2[3],row2[4],row2[5],row2[6])
-            print(row1[0],row1[1],row1[2],row1[3],row1[4],row1[5],row1[6])
-        #Row 2
-        elif pick_conver == "4" and row2[1] == "4":
-            row2[1] = player_token
-            #Updated board
-            print(row3[0],row3[1],row3[2],row3[3],row3[4],row3[5],row3[6])
-            print(row2[0],row2[1],row2[2],row2[3],row2[4],row2[5],row2[6])
-            print(row1[0],row1[1],row1[2],row1[3],row1[4],row1[5],row1[6])
-        elif pick_conver == "5" and row2[3] == "5":
-            row2[3] = player_token
-            #Updated board
-            print(row3[0],row3[1],row3[2],row3[3],row3[4],row3[5],row3[6])
-            print(row2[0],row2[1],row2[2],row2[3],row2[4],row2[5],row2[6])
-            print(row1[0],row1[1],row1[2],row1[3],row1[4],row1[5],row1[6])
-        elif pick_conver == "6" and row2[5] == "6":
-            row2[5] = player_token
-            #Updated board
-            print(row3[0],row3[1],row3[2],row3[3],row3[4],row3[5],row3[6])
-            print(row2[0],row2[1],row2[2],row2[3],row2[4],row2[5],row2[6])
-            print(row1[0],row1[1],row1[2],row1[3],row1[4],row1[5],row1[6])
-        #Row 1
-        elif pick_conver == "7" and row1[1] == "7":
-            row1[1] = player_token
-            #Updated board
-            print(row3[0],row3[1],row3[2],row3[3],row3[4],row3[5],row3[6])
-            print(row2[0],row2[1],row2[2],row2[3],row2[4],row2[5],row2[6])
-            print(row1[0],row1[1],row1[2],row1[3],row1[4],row1[5],row1[6])
-        elif pick_conver == "8" and row1[3] == "8":
-            row1[3] = player_token
-            #Updated board
-            print(row3[0],row3[1],row3[2],row3[3],row3[4],row3[5],row3[6])
-            print(row2[0],row2[1],row2[2],row2[3],row2[4],row2[5],row2[6])
-            print(row1[0],row1[1],row1[2],row1[3],row1[4],row1[5],row1[6])
-        elif pick_conver == "9" and row1[5] == "9":
-            row1[5] = player_token
-            #Updated board
-            print(row3[0],row3[1],row3[2],row3[3],row3[4],row3[5],row3[6])
-            print(row2[0],row2[1],row2[2],row2[3],row2[4],row2[5],row2[6])
-            print(row1[0],row1[1],row1[2],row1[3],row1[4],row1[5],row1[6])
+        pick = int(input("Where do you want to place your token? "))
+        """
+        The dictinary is meant to replace the if statements
+        """
+        slots = {
+            "1":1,
+            "2":3,
+            "3":5,
+            "4":1,
+            "5":3,
+            "6":5,
+            "7":1,
+            "8":3,
+            "9":5
+        }
+        place = slots.get(str(pick))
+        player_tokenes = ["X","O"]
+        can_place = None
+        if pick <= 3:
+            if row3[place] not in player_tokenes:
+                print(row3[place])
+                row3[place] = player_token
+            else:
+                print("Token is already there!")
+        elif pick <= 6:
+            if row2[place] not in player_tokenes:
+                row2[place] = player_token
+            else:
+                print("Token is already there!")
+        else:
+            if row1[place] not in player_tokenes:
+                row1[place] = player_token
+            else:
+                print("Token is already there!")
+            
+        #Updated board
+        print(row3[0],row3[1],row3[2],row3[3],row3[4],row3[5],row3[6])
+        print(row2[0],row2[1],row2[2],row2[3],row2[4],row2[5],row2[6])
+        print(row1[0],row1[1],row1[2],row1[3],row1[4],row1[5],row1[6])
+        
         # Horozantal win detection
         if row3.count("X")== 3 or row2.count("X") == 3 or row1.count("X") == 3:
             player_1_win = True
@@ -143,12 +124,6 @@ def ttt():
     elif player_2_win == True:
         print("Player 2 wins!")
 def rpsR():
-    """
-    RPS primarly uses encoders and decoders to convert the human 
-    input into a number, and then checks the winning conditions 
-    based on those numbers. This also decodes to make the round 
-    reports readable.
-    """
     mode = input("Automatic or Manual rock, paper sissors: ")
     amount = int(input("How many tries: "))
     lmode = mode.lower()
